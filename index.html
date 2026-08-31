@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manuna Mady — Portfolio</title>
+<meta name="description" content="Manuna Mady — Computer Science &amp; Software Engineering / Data Visualization student. Cybersecurity, machine learning, and systems projects.">
+<style>
+  :root{
+    --bg: #0b0d12;
+    --bg-alt: #11141b;
+    --card: #161a23;
+    --border: #232838;
+    --text: #e7e9ee;
+    --text-dim: #9aa1b2;
+    --accent: #7dd3fc;
+    --accent-2: #a78bfa;
+    --mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  }
+  @media (prefers-color-scheme: light){
+    :root{
+      --bg: #f7f8fb;
+      --bg-alt: #ffffff;
+      --card: #ffffff;
+      --border: #e4e7ee;
+      --text: #14161c;
+      --text-dim: #5b6070;
+      --accent: #0284c7;
+      --accent-2: #7c3aed;
+    }
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;
+  }
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:880px; margin:0 auto; padding:0 24px;}
+
+  /* Nav */
+  header.nav{
+    position:sticky; top:0; z-index:10;
+    background:rgba(11,13,18,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  @media (prefers-color-scheme: light){
+    header.nav{ background:rgba(247,248,251,0.85); }
+  }
+  header.nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:14px; padding-bottom:14px;
+  }
+  .brand{font-weight:700; letter-spacing:-0.02em; color:var(--text); font-size:1.05rem;}
+  nav.links{display:flex; gap:22px; font-size:0.92rem;}
+  nav.links a{color:var(--text-dim); font-weight:500;}
+  nav.links a:hover{color:var(--text); text-decoration:none;}
+
+  /* Hero */
+  .hero{padding:76px 0 56px;}
+  .eyebrow{
+    font-family:var(--mono); font-size:0.8rem; color:var(--accent);
+    letter-spacing:0.06em; text-transform:uppercase; margin-bottom:14px;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 5vw, 3.2rem);
+    margin:0 0 14px; letter-spacing:-0.03em; line-height:1.1;
+  }
+  .hero h1 span{
+    background:linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.lede{color:var(--text-dim); font-size:1.08rem; max-width:620px; margin:0 0 28px;}
+  .cta-row{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:34px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 18px; border-radius:8px; font-size:0.92rem; font-weight:600;
+    border:1px solid var(--border);
+  }
+  .btn.primary{background:var(--text); color:var(--bg); border-color:var(--text);}
+  .btn.primary:hover{opacity:0.88; text-decoration:none;}
+  .btn.ghost{color:var(--text); background:transparent;}
+  .btn.ghost:hover{border-color:var(--accent); text-decoration:none;}
+
+  .meta-row{display:flex; flex-wrap:wrap; gap:18px; font-size:0.88rem; color:var(--text-dim);}
+  .meta-row span{display:flex; align-items:center; gap:6px;}
+
+  /* Sections */
+  section{padding:52px 0; border-top:1px solid var(--border);}
+  h2.section-title{
+    font-family:var(--mono); font-size:0.82rem; color:var(--text-dim);
+    text-transform:uppercase; letter-spacing:0.08em; margin:0 0 28px;
+    display:flex; align-items:center; gap:12px;
+  }
+  h2.section-title::after{
+    content:''; flex:1; height:1px; background:var(--border);
+  }
+
+  /* About */
+  .about-grid{display:grid; grid-template-columns: 1fr; gap:28px;}
+  .about-grid p{color:var(--text-dim); margin:0 0 14px;}
+  .skills{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px;}
+  .skill-tag{
+    font-family:var(--mono); font-size:0.8rem; color:var(--text);
+    background:var(--card); border:1px solid var(--border);
+    padding:5px 11px; border-radius:6px;
+  }
+  .skill-group{margin-bottom:16px;}
+  .skill-group-label{font-size:0.8rem; color:var(--text-dim); margin-bottom:8px; font-weight:600;}
+
+  /* Experience */
+  .exp-item{margin-bottom:30px;}
+  .exp-item:last-child{margin-bottom:0;}
+  .exp-head{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:6px; margin-bottom:4px;}
+  .exp-title{font-weight:700; font-size:1.02rem;}
+  .exp-org{color:var(--accent); font-weight:500;}
+  .exp-date{font-family:var(--mono); font-size:0.8rem; color:var(--text-dim); white-space:nowrap;}
+  .exp-loc{font-size:0.85rem; color:var(--text-dim); margin-bottom:8px;}
+  .exp-item ul{margin:8px 0 0; padding-left:20px; color:var(--text-dim); font-size:0.94rem;}
+  .exp-item li{margin-bottom:5px;}
+
+  /* Projects */
+  .project-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:18px;}
+  .card{
+    background:var(--card); border:1px solid var(--border); border-radius:12px;
+    padding:22px; display:flex; flex-direction:column; transition:border-color .15s, transform .15s;
+  }
+  .card:hover{border-color:var(--accent); transform:translateY(-2px);}
+  .card h3{margin:0 0 6px; font-size:1.05rem;}
+  .card .stack{font-family:var(--mono); font-size:0.76rem; color:var(--accent-2); margin-bottom:10px;}
+  .card p{color:var(--text-dim); font-size:0.9rem; margin:0; flex:1;}
+  .card .links{margin-top:14px; display:flex; gap:14px; font-size:0.85rem;}
+
+  /* Education */
+  .edu-card{
+    background:var(--card); border:1px solid var(--border); border-radius:12px; padding:22px;
+  }
+  .edu-card .exp-head{margin-bottom:2px;}
+  .edu-card .exp-loc{margin-bottom:10px;}
+  .edu-card ul{margin:6px 0 0; padding-left:20px; color:var(--text-dim); font-size:0.92rem;}
+
+  /* Contact / footer */
+  footer{padding:50px 0 60px; text-align:center;}
+  footer .contact-links{display:flex; justify-content:center; gap:22px; flex-wrap:wrap; margin-bottom:18px; font-size:0.95rem;}
+  footer .fine{color:var(--text-dim); font-size:0.82rem;}
+
+  @media (max-width:600px){
+    nav.links{gap:14px; font-size:0.85rem;}
+    .hero{padding:56px 0 40px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="brand">Manuna Mady</div>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" id="top">
+    <div class="eyebrow">// cybersecurity · software engineering · data visualization</div>
+    <h1>Hi, I'm Manuna — I build <span>secure, data-driven software</span>.</h1>
+    <p class="lede">
+      Dual-degree CS &amp; Software Engineering (Cybersecurity) and Data Visualization student at the University
+      of Washington. I like working at the intersection of systems-level engineering, machine learning, and
+      thoughtful UX — from process orchestration in C++ to GenAI translation models to narrative game engines.
+    </p>
+    <div class="cta-row">
+      <a class="btn primary" href="#projects">View Projects</a>
+      <a class="btn ghost" href="mailto:mennahmady@gmail.com">Get in Touch</a>
+    </div>
+    <div class="meta-row">
+      <span>📍 Kirkland, WA</span>
+      <span>🎓 B.S. CSSE (Cybersecurity) &amp; B.A. Data Visualization — Expected June 2026</span>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About</h2>
+    <div class="about-grid">
+      <p>
+        I'm a University of Washington student pursuing a dual degree in Computer Science &amp; Software Engineering
+        (Cybersecurity focus) and Data Visualization, with a 3.8 GPA. My work spans low-level systems programming,
+        applied machine learning, and interactive software — I enjoy projects that combine strong engineering
+        fundamentals with real user impact, whether that's a GenAI translation model, a UNIX process orchestrator,
+        or a narrative game engine built in Unreal Engine.
+      </p>
+      <p>
+        Currently, I'm an Undergraduate Grader for UW's Computer Science &amp; Software Engineering department and a
+        long-time Technical Mentor &amp; Mobile App Developer with FIRST Robotics, where I build tools used by
+        competitive robotics teams worldwide.
+      </p>
+      <div>
+        <div class="skill-group">
+          <div class="skill-group-label">Languages</div>
+          <div class="skills">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">C</span>
+            <span class="skill-tag">R</span>
+            <span class="skill-tag">Dart</span>
+            <span class="skill-tag">SQL</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Tools &amp; Frameworks</div>
+          <div class="skills">
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Linux/UNIX</span>
+            <span class="skill-tag">CI/CD</span>
+            <span class="skill-tag">SASE/SD-WAN</span>
+            <span class="skill-tag">Unreal Engine (Blueprints)</span>
+            <span class="skill-tag">Pandas</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Concepts</div>
+          <div class="skills">
+            <span class="skill-tag">Data Structures &amp; Algorithms</span>
+            <span class="skill-tag">Object-Oriented Design</span>
+            <span class="skill-tag">Distributed Systems</span>
+            <span class="skill-tag">Machine Learning</span>
+            <span class="skill-tag">GenAI Integration</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2 class="section-title">Experience</h2>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-title">Undergraduate Grader</span> — <span class="exp-org">University of Washington</span></div>
+        <div class="exp-date">Oct 2025 – Present</div>
+      </div>
+      <div class="exp-loc">Computer Science &amp; Software Engineering · Bothell, WA</div>
+      <ul>
+        <li>Evaluate and provide technical code reviews for 250+ student programming submissions weekly.</li>
+        <li>Enforce strict adherence to Object-Oriented Design (OOD) principles, memory management, and algorithmic efficiency.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <div><span class="exp-title">Technical Mentor &amp; Mobile App Developer</span> — <span class="exp-org">FIRST Robotics (Sushi Scouts)</span></div>
+        <div class="exp-date">Mar 2023 – Present</div>
+      </div>
+      <div class="exp-loc">Bellevue, WA</div>
+      <ul>
+        <li>Spearhead development of the "Sushi Scouts" mobile app, engineering real-time data collection and performance analytics tools used by 100+ competitive robotics teams globally.</li>
+        <li>Architect secure user authentication pipelines and resolve complex UI rendering bugs to optimize usability and cross-platform performance.</li>
+        <li>Mentor two robotics teams, including a rookie cohort, in software architecture and design.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="project-grid">
+
+      <div class="card">
+        <h3>Generative AI Language Translation Model</h3>
+        <div class="stack">Python · NLP · MarianMT</div>
+        <p>Architected and trained a specialized ML translation model leveraging GenAI to process Arabic dialects, with custom local data pipelines to structure datasets and optimize translation accuracy.</p>
+      </div>
+
+      <div class="card">
+        <h3>Linux Distributed Process Orchestrator</h3>
+        <div class="stack">C++ · UNIX · IPC</div>
+        <p>A robust C++ application (processes.cpp) demonstrating deep OS control via multi-level process execution, with memory-safe IPC pipelines using forks and pipes across 4 generations of processes.</p>
+      </div>
+
+      <div class="card">
+        <h3>Interactive Narrative Engine</h3>
+        <div class="stack">Unreal Engine · C++ · Senior Capstone</div>
+        <p>Core logic for a narrative game with complex branching decision trees, integrating assembly-based library implementations to optimize character mechanics — 400+ dev hours and counting.</p>
+      </div>
+
+      <div class="card">
+        <h3>Data-Driven Platform Redesign</h3>
+        <div class="stack">Figma · Data Visualization</div>
+        <p>UX research and prototyping to overhaul the PeopleGrove interface, prioritizing usability and quantifying prototype success through evaluated user flows.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="education">
+    <h2 class="section-title">Education</h2>
+    <div class="edu-card">
+      <div class="exp-head">
+        <div class="exp-title">University of Washington</div>
+        <div class="exp-date">Expected June 2026</div>
+      </div>
+      <div class="exp-loc">Dual degree: B.S. in CSSE (Cybersecurity) &amp; B.A. in Data Visualization · Bothell, WA</div>
+      <ul>
+        <li><strong>GPA:</strong> 3.8 / 4.0</li>
+        <li><strong>Relevant coursework:</strong> Data Structures, Algorithms, Machine Learning, Cybersecurity, Operating Systems, Object-Oriented Design</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2 class="section-title" style="justify-content:center;">Get in Touch</h2>
+    <p style="color:var(--text-dim); max-width:480px; margin:0 auto 22px;">
+      I'm always happy to connect about software engineering, cybersecurity, or interesting projects — feel free to reach out.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:mennahmady@gmail.com">✉ Email</a>
+      <a href="https://github.com/MennahMady" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/manuna-mady" target="_blank" rel="noopener">LinkedIn</a>
+      <span>📍 Kirkland, WA</span>
+    </div>
+    <div class="fine">&copy; <span id="year"></span> Manuna Mady</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
